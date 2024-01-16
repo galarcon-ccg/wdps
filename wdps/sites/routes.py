@@ -7,6 +7,10 @@ wdps = Blueprint('wdps', __name__, url_prefix='/wdps', template_folder="./wdps/t
 def index():
     return render_template('index.html')
 
+@wdps.route("/<organism_id>")
+def organism_page(organism_id):
+    return render_template('/ecoli/index.html')
+
 #Statics
 @wdps.route('/static/<type>/<file_name>')
 def static_file(type, file_name):

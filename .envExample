@@ -1,0 +1,6 @@
+#rename this file to '.env' when the fields have been filled
+# GQL_SERVICE = "url of RegulonDB-HT GraphQL API"
+# REGULONDB_BROWSER = " url of RegulonDB
+# GraphQL service
+GQL_SERVICE=http://127.0.0.1/graphql
+REGULONDB_BROWSER=http://127.0.0.1/

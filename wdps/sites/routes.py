@@ -1,6 +1,7 @@
 import os
-from flask import Blueprint, render_template, send_file
+from flask import Blueprint, render_template, send_file, request
 
+#wdps routes
 wdps = Blueprint('wdps', __name__, url_prefix='/wdps', template_folder="./wdps/templates", static_folder="./wdps/static")
 
 @wdps.route("/")
@@ -24,3 +25,14 @@ def static_file(type, file_name):
     else:
         print("file ",file_name," no found in route ",path)
         return "file no found"
+
+#gene routes
+
+gene = Blueprint('gene',__name__,url_prefix='/wdps/gene', template_folder="./gene/templates", static_folder="./gene/static")
+
+@gene.route("/",methods=["POST"] )
+def gene_index():
+    organism_id = request.args.get("organism_id")
+    if organism_id is None:
+        return "Error"
+    return "Hola"

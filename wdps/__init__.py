@@ -1,7 +1,7 @@
 import os
 import ssl
 from flask import Flask
-from .sites.routes import wdps
+from .sites.routes import wdps, gene
 from .apis.routes import api
 from flask_cors import CORS
 from sgqlc.endpoint.http import HTTPEndpoint
@@ -18,5 +18,6 @@ def create_app():
     #Blueprints configuration
     app.register_blueprint(wdps)
     app.register_blueprint(api)
-    
+    app.register_blueprint(gene)
+
     return app

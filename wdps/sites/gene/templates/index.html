@@ -1,25 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <!--<link rel="stylesheet" href="./wdps/static/css/base.css">-->
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/base.css') }}">
-    <title>RDBwdps</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RDB-Gene</title>
     <meta name="viewport" content="width=}, initial-scale=1.0">
 </head>
 
 <body>
-    <script>
-        console.log("{{pagination}}")
-    </script>
     <div>
         <h1>RegulonDB WDPS</h1>
-        <h2 class="description {{'animationFrame1' if header_animation }}">Escherichia Coli K12</h2>
+        <h2>Escherichia Coli K12</h2>
         <div>
-            <p class="description {{'animationFrame2' if header_animation }}">Gene Documents</p>
+            <p>Gene Documents</p>
         </div>
-        <div class="description {{'animationFrame2' if header_animation }}" >
+        <div>
             <form action="" method="post">
                 <label for="keyword">Search</label>
                 <input type="text" id="keyword" name="keyword" value="{{search_result}}" />
@@ -27,7 +22,7 @@
             </form>
         </div>
         <br>
-        <div class="description {{'animationFrame1' if not header_animation }} {{'animationFrame3' if header_animation }}" >
+        <div>
             <form action="" method="post">
                 <input type="submit" id="prev_page" name="prevPage" value="prevPage" />
                 <label for="current_page">current page: {{pagination.currentPage}} </label>

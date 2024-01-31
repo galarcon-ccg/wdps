@@ -7,4 +7,4 @@ query GetAllGenes{
   }
 }
 '''
-query_Get
+#query_Get

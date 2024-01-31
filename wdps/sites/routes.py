@@ -1,5 +1,6 @@
 import os
 from flask import Blueprint, render_template, send_file, request
+from .gene.src import gene_list
 
 #wdps routes
 wdps = Blueprint('wdps', __name__, url_prefix='/wdps', template_folder="./wdps/templates", static_folder="./wdps/static")
@@ -30,9 +31,9 @@ def static_file(type, file_name):
 
 gene = Blueprint('gene',__name__,url_prefix='/wdps/gene', template_folder="./gene/templates", static_folder="./gene/static")
 
-@gene.route("/",methods=["POST"] )
+@gene.route("/",methods=["POST","GET"] )
 def gene_index():
     organism_id = request.args.get("organism_id")
     if organism_id is None:
-        return "Error"
-    return "Hola"
+        return "Error organism id"
+    return gene_list()

@@ -1,7 +1,20 @@
 from flask import Flask, request, render_template, make_response, send_from_directory
-from .gene import Gene_collection
+from wdps.web_services.queries.GenesResult import WSGenes 
 
-def collection_list(collection_name,gql_service,browser_url):
+def gene_list():
+    template = ":)"
+    if request.method == 'POST':
+        if request.form.get('search') == 'search':
+            return template
+    else:
+        ws = WSGenes()
+        list = ws.getAll_genes()
+        print(list)
+        return "list"
+        
+    
+'''
+def collection_list():
     template = "no collection support"
     if request.method == 'POST':
         if request.form.get('search') == 'search':
@@ -32,3 +45,4 @@ def collection_list(collection_name,gql_service,browser_url):
         print(results)
         template =render_template('/ecoli/gene/index.html', data=results["data"], pagination=results["pagination"], search_result="")
     return template
+    '''

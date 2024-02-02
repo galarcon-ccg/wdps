@@ -1,5 +1,5 @@
 import os, sys
-from app.utiles import errorRegister
+from wdps.utils import errorRegister
 import json
 from flask import jsonify
 from .web_services import WServices

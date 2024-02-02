@@ -1,6 +1,7 @@
 from flask import Blueprint, request
-from web_services import WS_connect
+from wdps.web_services import WS_connect
 from .ht.dataset.datasets import DatasetsSearch
+from .ht.processes_HT.ht_process import HTprocess
 
 api = Blueprint('api', __name__, url_prefix='/wdps/api')
 
@@ -35,3 +36,19 @@ def index_ht_datasets_by_format(file_format):
         else:
             return {"error": "ws connect error"}
     return {"error": "api no method support"}
+
+#route /wdps/api/ht/<id_dataset>/<data_type>/<file_format>
+@api.route('/ht/<id_dataset>/<data_type>/<file_format>')
+def process_ht(id_dataset, data_type, file_format):
+    data_type = data_type.lower()
+    ws = WS_connect()
+    if ws.is_connected:
+        ht_process = HTprocess(id_dataset, ws.get_gql_service)
+        valid_types = ["sites", "peaks", "tus", "tts", "tss", "ge"]
+        if data_type == 'authordata':
+            ht_process.author_data(file_format)
+            return ht_process.get_response()
+        elif data_type in valid_types:
+            ht_process.get_data(file_format, data_type)
+            return ht_process.get_response()
+    return {"error": "ws no connect"}
